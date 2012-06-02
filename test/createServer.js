@@ -5,8 +5,6 @@ var obj = {
     add: function (x, y) { return x + y; }
 };
 
-simpleremote.createRemoteServer(obj);
-
 exports['Create Server'] = function(test) {
     test.expect(1);
     
