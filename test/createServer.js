@@ -11,7 +11,9 @@ exports['Create Server'] = function(test) {
     var server = simpleremote.createRemoteServer(obj);
     server.listen(3000);
     
-    var client = simpleremote.createRemoteClient(
+    var client = simpleremote.createRemoteClient();
+    
+    client.on('remote',
         function(remote) {
             test.ok(remote);
             server.close();
@@ -35,7 +37,9 @@ exports['Create and Invoke Server'] = function(test) {
     var server = simpleremote.createRemoteServer(obj);
     server.listen(3000);
     
-    var client = simpleremote.createRemoteClient(
+    var client = simpleremote.createRemoteClient();
+    
+    client.on('remote',
         function(remote) {
             test.ok(remote);
             remote.method(1);
@@ -58,7 +62,9 @@ exports['Invoke Remote Method and Get Simple Return'] = function(test) {
     var server = simpleremote.createRemoteServer(obj);
     server.listen(3000);
     
-    var client = simpleremote.createRemoteClient(
+    var client = simpleremote.createRemoteClient();
+    
+    client.on('remote',
         function(remote) {
             test.ok(remote);
             remote.add(2, 3, function(val) {
@@ -85,7 +91,9 @@ exports['Get Simple Return without Error'] = function(test) {
     var server = simpleremote.createRemoteServer(obj);
     server.listen(3000);
     
-    var client = simpleremote.createRemoteClient(
+    var client = simpleremote.createRemoteClient();
+    
+    client.on('remote',
         function(remote) {
             test.ok(remote);
             remote.add(2, 3, function(err, val) {
@@ -112,7 +120,9 @@ exports['Get Remote Error'] = function(test) {
     var server = simpleremote.createRemoteServer(obj);
     server.listen(3000);
     
-    var client = simpleremote.createRemoteClient(
+    var client = simpleremote.createRemoteClient();
+    
+    client.on('remote',
         function(remote) {
             test.ok(remote);
             remote.eval("a+2", function(err, val) {
@@ -140,7 +150,9 @@ exports['Remote Simple Eval'] = function(test) {
     var server = simpleremote.createRemoteServer(obj);
     server.listen(3000);
     
-    var client = simpleremote.createRemoteClient(
+    var client = simpleremote.createRemoteClient();
+    
+    client.on('remote',
         function(remote) {
             test.ok(remote);
             remote.eval("2+3", function(val) {
@@ -168,7 +180,9 @@ exports['Serialize Simple Object'] = function(test) {
     var server = simpleremote.createRemoteServer(obj);
     server.listen(3000);
     
-    var client = simpleremote.createRemoteClient(
+    var client = simpleremote.createRemoteClient();
+    
+    client.on('remote',
         function(remote) {
             test.ok(remote);
             remote.get("foo", function(val) {

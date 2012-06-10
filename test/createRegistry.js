@@ -16,7 +16,9 @@ exports['Get Registry'] = function(test) {
     var server = simpleremote.createRemoteServer(registry);
     server.listen(3000);
     
-    var client = simpleremote.createRemoteClient(
+    var client = simpleremote.createRemoteClient();
+    
+    client.on('remote', 
         function(remote) {
             test.ok(remote);
             server.close();
@@ -33,7 +35,9 @@ exports['Get String Element'] = function(test) {
     var server = simpleremote.createRemoteServer(registry);
     server.listen(3000);
     
-    var client = simpleremote.createRemoteClient(
+    var client = simpleremote.createRemoteClient();
+    
+    client.on('remote',
         function(remote) {
             test.ok(remote);
             remote.getElement('description', function(element) {
@@ -55,7 +59,9 @@ exports['Get Array Element'] = function(test) {
     var server = simpleremote.createRemoteServer(registry);
     server.listen(3000);
     
-    var client = simpleremote.createRemoteClient(
+    var client = simpleremote.createRemoteClient();
+    
+    client.on('remote',
         function(remote) {
             test.ok(remote);
             remote.getElement('values', function(element) {
@@ -80,7 +86,9 @@ exports['Get Object Element'] = function(test) {
     var server = simpleremote.createRemoteServer(registry);
     server.listen(3000);
     
-    var client = simpleremote.createRemoteClient(
+    var client = simpleremote.createRemoteClient();
+    
+    client.on('remote',
         function(remote) {
             test.ok(remote);
             remote.getElement('customer', function(element) {
@@ -103,7 +111,9 @@ exports['Get Undefined Element as null'] = function(test) {
     var server = simpleremote.createRemoteServer(registry);
     server.listen(3000);
     
-    var client = simpleremote.createRemoteClient(
+    var client = simpleremote.createRemoteClient();
+    
+    client.on('remote',
         function(remote) {
             test.ok(remote);
             remote.getElement('foo', function(element) {
@@ -123,7 +133,9 @@ exports['Get Reference'] = function(test) {
     var server = simpleremote.createRemoteServer(registry);
     server.listen(3000);
     
-    var client = simpleremote.createRemoteClient(
+    var client = simpleremote.createRemoteClient();
+    
+    client.on('remote', 
         function(remote) {
             test.ok(remote);
             remote.getReference('customer', function(element) {
@@ -147,7 +159,9 @@ exports['Invoke Reference Method'] = function(test) {
     var server = simpleremote.createRemoteServer(registry);
     server.listen(3000);
     
-    var client = simpleremote.createRemoteClient(
+    var client = simpleremote.createRemoteClient();
+    
+    client.on('remote',
         function(remote) {
             test.ok(remote);
             remote.getReference('customer', function(element) {
@@ -162,3 +176,4 @@ exports['Invoke Reference Method'] = function(test) {
         
     client.connect(3000);
 }
+
