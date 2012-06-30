@@ -199,7 +199,6 @@ exports['Remote Simple Eval'] = function(test) {
     client.connect(3000);
 }
 
-
 exports['Serialize Simple Object'] = function(test) {
     test.expect(4);
     
@@ -221,6 +220,34 @@ exports['Serialize Simple Object'] = function(test) {
                 test.ok(val);
                 test.equal(val.name, "foo");
                 test.equal(val.length, 3);
+                server.close();
+                client.end();
+                test.done();
+            });
+        });
+        
+    client.connect(3000);
+}
+
+exports['Serialize null'] = function(test) {
+    test.expect(2);
+    
+    var obj = {
+        get: function(name) { 
+            return null;
+        }
+    };
+
+    var server = simpleremote.createRemoteServer(obj);
+    server.listen(3000);
+    
+    var client = simpleremote.createRemoteClient();
+    
+    client.on('remote',
+        function(remote) {
+            test.ok(remote);
+            remote.get("foo", function(val) {
+                test.equal(val, null);
                 server.close();
                 client.end();
                 test.done();
