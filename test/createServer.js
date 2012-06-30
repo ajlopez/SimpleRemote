@@ -79,6 +79,38 @@ exports['Invoke Remote Method and Get Simple Return'] = function(test) {
     client.connect(3000);
 }
 
+exports['Throw error in callback'] = function(test) {
+    test.expect(3);
+    
+    var obj = {
+        add: function(x,y) { 
+            return x + y;
+        }
+    };
+
+    var server = simpleremote.createRemoteServer(obj);
+    server.listen(3000);
+    
+    var client = simpleremote.createRemoteClient();
+    
+    client.on('remote',
+        function(remote) {
+            test.ok(remote);
+            remote.add(2, 3, function(val) {
+                throw "problem";
+            });
+            remote.add(2, 3, function(val) {
+                test.ok(val);
+                test.equal(val, 5);
+                server.close();
+                client.end();
+                test.done();
+            });
+        });
+        
+    client.connect(3000);
+}
+
 exports['Get Simple Return without Error'] = function(test) {
     test.expect(3);
     
