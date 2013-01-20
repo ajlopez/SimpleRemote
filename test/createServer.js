@@ -140,6 +140,35 @@ exports['Get Simple Return without Error'] = function(test) {
     client.connect(3000);
 }
 
+exports['Get Simple Return using Remote Callback'] = function(test) {
+    test.expect(3);
+    
+    var obj = {
+        add: function(x,y,cb) { 
+            cb(null, x + y);
+        }
+    };
+
+    var server = simpleremote.createRemoteServer(obj, ['add']);
+    server.listen(3000);
+    
+    var client = simpleremote.createRemoteClient();
+    
+    client.on('remote',
+        function(remote) {
+            test.ok(remote);
+            remote.add(2, 3, function(err, val) {
+                test.ok(val);
+                test.equal(val, 5);
+                server.close();
+                client.end();
+                test.done();
+            });
+        });
+        
+    client.connect(3000);
+}
+
 exports['Get Remote Error'] = function(test) {
     test.expect(4);
     
@@ -150,6 +179,36 @@ exports['Get Remote Error'] = function(test) {
     };
 
     var server = simpleremote.createRemoteServer(obj);
+    server.listen(3000);
+    
+    var client = simpleremote.createRemoteClient();
+    
+    client.on('remote',
+        function(remote) {
+            test.ok(remote);
+            remote.eval("a+2", function(err, val) {
+                test.ok(err);
+                test.ok(typeof err == 'string');
+                test.ok(err.indexOf('ReferenceError') >= 0);
+                server.close();
+                client.end();
+                test.done();
+            });
+        });
+        
+    client.connect(3000);
+}
+
+exports['Get Remote Error using Callback'] = function(test) {
+    test.expect(4);
+    
+    var obj = {
+        eval: function(text, cb) { 
+            cb(eval(text));
+        }
+    };
+
+    var server = simpleremote.createRemoteServer(obj, ['eval']);
     server.listen(3000);
     
     var client = simpleremote.createRemoteClient();

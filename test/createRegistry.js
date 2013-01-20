@@ -5,10 +5,15 @@ var obj = {
     add: function (x, y) { return x + y; },
     description: 'an Object',
     values: [1,2,3],
-    customer: { id: 1, name: 'Google', add: function(x, y) { return x + y } }
+    customer: { 
+        id: 1, 
+        name: 'Google', 
+        add: function(x, y) { return x + y },
+        addAsync: function (x, y, cb) { cb(null, x + y); }
+    }
 };
 
-var registry = simpleremote.createRegistry(obj);
+var registry = simpleremote.createRegistry(obj, ['addAsync']);
 
 exports['Get Registry'] = function(test) {
     test.expect(1);
@@ -177,3 +182,27 @@ exports['Invoke Reference Method'] = function(test) {
     client.connect(3000);
 }
 
+
+exports['Invoke Async Reference Method'] = function(test) {
+    test.expect(2);
+    
+    var server = simpleremote.createRemoteServer(registry);
+    server.listen(3000);
+    
+    var client = simpleremote.createRemoteClient();
+    
+    client.on('remote',
+        function(remote) {
+            test.ok(remote);
+            remote.getReference('customer', function(element) {
+                element.addAsync(1, 2, function(value) {
+                    test.equal(value, 3);
+                    server.close();
+                    client.end();
+                    test.done();
+                });
+            });
+        });
+        
+    client.connect(3000);
+}
