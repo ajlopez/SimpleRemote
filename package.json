@@ -1,16 +1,16 @@
 { "name": "simpleremote"
 , "description": "Simple Remote Objects for Node.js"
 , "keywords": [ "remote", "rpc", "nodejs", "javascript" ]
-, "version": "0.0.3"
+, "version": "0.0.4"
 , "author": "Angel 'Java' Lopez <webmaster@ajlopez.com> (http://www.ajlopez.com)"
 , "repository": { "type": "git", "url": "git://github.com/ajlopez/SimpleRemote.git" }
 , "main": "./lib/simpleremote.js"
-, "engines": { "node": ">= 0.6.0 && < 0.9.0" }
+, "engines": { "node": ">= 0.6.0 && < 0.11.0" }
 , "scripts": {
     "test": "nodeunit test"
   }
 , "dependencies": {
-	"simplemessages": "0.0.3"
+	"simplemessages": "0.0.5"
   }
 , "devDependencies": {
     "nodeunit": ">= 0.7.4"

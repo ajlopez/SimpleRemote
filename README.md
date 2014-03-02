@@ -108,6 +108,7 @@ npm test
 Adding support for call remote async methods (methods that accept a
 callback function as end argument).
 Updated README.md
+- 0.0.4: Published. Using SimpleMessages 0.0.5; updated engine range
 
 ## Used by
 
