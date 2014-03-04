@@ -10,7 +10,7 @@ exports['Create Server'] = function(test) {
     
     var server = simpleremote.createRemoteServer(obj);
     server.listen(3000);
-    
+
     var client = simpleremote.createRemoteClient();
     
     client.on('remote',

@@ -109,6 +109,7 @@ Adding support for call remote async methods (methods that accept a
 callback function as end argument).
 Updated README.md
 - 0.0.4: Published. Using SimpleMessages 0.0.5; updated engine range
+- 0.0.5: Published. Using SimpleMessages 0.0.6; silent error in server if error in client socket
 
 ## Used by
 
