@@ -6,7 +6,7 @@ var obj = {
 };
 
 exports['Create Server'] = function(test) {
-    test.expect(1);
+    test.async();
     
     var server = simpleremote.createRemoteServer(obj);
     server.listen(3000);
@@ -25,7 +25,7 @@ exports['Create Server'] = function(test) {
 }
 
 exports['Create and Invoke Server'] = function(test) {
-    test.expect(2);
+    test.async();
     
     var obj = {
         method: function (x) { 
@@ -51,7 +51,7 @@ exports['Create and Invoke Server'] = function(test) {
 }
 
 exports['Invoke Remote Method and Get Simple Return'] = function(test) {
-    test.expect(3);
+    test.async();
     
     var obj = {
         add: function(x,y) { 
@@ -80,7 +80,7 @@ exports['Invoke Remote Method and Get Simple Return'] = function(test) {
 }
 
 exports['Throw error in callback'] = function(test) {
-    test.expect(3);
+    test.async();
     
     var obj = {
         add: function(x,y) { 
@@ -112,7 +112,7 @@ exports['Throw error in callback'] = function(test) {
 }
 
 exports['Get Simple Return without Error'] = function(test) {
-    test.expect(3);
+    test.async();
     
     var obj = {
         add: function(x,y) { 
@@ -141,7 +141,7 @@ exports['Get Simple Return without Error'] = function(test) {
 }
 
 exports['Get Simple Return using Remote Callback'] = function(test) {
-    test.expect(3);
+    test.async();
     
     var obj = {
         add: function(x,y,cb) { 
@@ -170,7 +170,7 @@ exports['Get Simple Return using Remote Callback'] = function(test) {
 }
 
 exports['Get Remote Error'] = function(test) {
-    test.expect(4);
+    test.async(4);
     
     var obj = {
         eval: function(text) { 
@@ -200,7 +200,7 @@ exports['Get Remote Error'] = function(test) {
 }
 
 exports['Get Remote Error using Callback'] = function(test) {
-    test.expect(4);
+    test.async();
     
     var obj = {
         eval: function(text, cb) { 
@@ -230,7 +230,7 @@ exports['Get Remote Error using Callback'] = function(test) {
 }
 
 exports['Remote Simple Eval'] = function(test) {
-    test.expect(3);
+    test.async();
     
     var obj = {
         eval: function(text) { 
@@ -259,7 +259,7 @@ exports['Remote Simple Eval'] = function(test) {
 }
 
 exports['Serialize Simple Object'] = function(test) {
-    test.expect(4);
+    test.async();
     
     var obj = {
         get: function(name) { 
@@ -289,7 +289,7 @@ exports['Serialize Simple Object'] = function(test) {
 }
 
 exports['Serialize null'] = function(test) {
-    test.expect(2);
+    test.async();
     
     var obj = {
         get: function(name) { 

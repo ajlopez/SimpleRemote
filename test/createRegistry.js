@@ -16,7 +16,7 @@ var obj = {
 var registry = simpleremote.createRegistry(obj, ['addAsync']);
 
 exports['Get Registry'] = function(test) {
-    test.expect(1);
+    test.async();
     
     var server = simpleremote.createRemoteServer(registry);
     server.listen(3000);
@@ -35,7 +35,7 @@ exports['Get Registry'] = function(test) {
 }
 
 exports['Get String Element'] = function(test) {
-    test.expect(4);
+    test.async();
     
     var server = simpleremote.createRemoteServer(registry);
     server.listen(3000);
@@ -59,7 +59,7 @@ exports['Get String Element'] = function(test) {
 }
 
 exports['Get Array Element'] = function(test) {
-    test.expect(7);
+    test.async();
     
     var server = simpleremote.createRemoteServer(registry);
     server.listen(3000);
@@ -86,7 +86,7 @@ exports['Get Array Element'] = function(test) {
 }
 
 exports['Get Object Element'] = function(test) {
-    test.expect(5);
+    test.async();
     
     var server = simpleremote.createRemoteServer(registry);
     server.listen(3000);
@@ -111,7 +111,7 @@ exports['Get Object Element'] = function(test) {
 }
 
 exports['Get Undefined Element as null'] = function(test) {
-    test.expect(2);
+    test.async();
     
     var server = simpleremote.createRemoteServer(registry);
     server.listen(3000);
@@ -133,7 +133,7 @@ exports['Get Undefined Element as null'] = function(test) {
 }
 
 exports['Get Reference'] = function(test) {
-    test.expect(6);
+    test.async();
     
     var server = simpleremote.createRemoteServer(registry);
     server.listen(3000);
@@ -159,7 +159,7 @@ exports['Get Reference'] = function(test) {
 }
 
 exports['Invoke Reference Method'] = function(test) {
-    test.expect(2);
+    test.async();
     
     var server = simpleremote.createRemoteServer(registry);
     server.listen(3000);
@@ -184,7 +184,7 @@ exports['Invoke Reference Method'] = function(test) {
 
 
 exports['Invoke Async Reference Method'] = function(test) {
-    test.expect(2);
+    test.async();
     
     var server = simpleremote.createRemoteServer(registry);
     server.listen(3000);

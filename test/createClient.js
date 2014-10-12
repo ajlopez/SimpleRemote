@@ -6,7 +6,7 @@ var obj = {
 };
 
 exports['Create Client with Remote Object']= function(test) {
-    test.expect(2);
+    test.async();
     
     var obj = {
         process: function(msg) {
@@ -28,7 +28,7 @@ exports['Create Client with Remote Object']= function(test) {
 }
 
 exports['Create Client with Remote Object and Callback']= function(test) {
-    test.expect(4);
+    test.async();
     
     var obj = {
         process: function(msg, cb) {
